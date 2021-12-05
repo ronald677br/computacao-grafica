@@ -1,0 +1,32 @@
+# 3ds Max Wavefront OBJ Exporter v0.99 - (c)2007 guruware
+# File Created: 05.12.2021 18:08:05
+
+mtllib chao_escuro.mtl
+
+#
+# object Plane002
+#
+
+v  -68.8524 0.0000 70.7285
+v  -68.8524 0.0000 212.1932
+v  -24.8316 0.0000 70.7285
+v  -24.8316 0.0000 212.1932
+# 4 vertices
+
+vn 0.0000 1.0000 -0.0000
+# 1 vertex normals
+
+vt 0.0000 1.0000 0.0000
+vt 0.0000 0.0000 0.0000
+vt 1.0000 1.0000 0.0000
+vt 1.0000 0.0000 0.0000
+# 4 texture coords
+
+o Plane002
+g Plane002
+usemtl Material__2
+s 1
+f 1/1/1 2/2/1 3/3/1 
+f 4/4/1 3/3/1 2/2/1 
+# 2 faces
+

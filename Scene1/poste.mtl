@@ -1,7 +1,7 @@
 # 3ds Max Wavefront OBJ Exporter v0.99 - (c)2007 guruware
-# File Created: 05.12.2021 15:32:04
+# File Created: 05.12.2021 17:51:11
 
-newmtl 01___Default
+newmtl poste_01___Default
 	Kd 0.5000 0.5000 0.5000
 	Ks 1.0000 1.0000 1.0000
 	Tr 0.0000
@@ -11,7 +11,7 @@ newmtl 01___Default
 	Pm 0.0000
 	Pc 0.0000
 	Pcr 0.0000
-	Ni 1.5200
+	Ni 1.5000
 	Ke 0.0000 0.0000 0.0000
 	illum 2
 	map_Kd arvore.jpg
