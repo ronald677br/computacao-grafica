@@ -52,11 +52,15 @@ CScene1::CScene1()
 	for (auto& a : modelsAssimp) a = NULL;
 
 	//modelsAssimp[0] = new CModel_ASSIMP(CModel_ASSIMP::IMMEDIATE, "../Scene1/Castle/Castle.obj");
-	modelsAssimp[1] = new CModel_ASSIMP(CModel_ASSIMP::IMMEDIATE, "../Scene1/barrel3.obj");
+	modelsAssimp[1] = new CModel_ASSIMP(CModel_ASSIMP::IMMEDIATE, "../Scene1/escuro.obj");
 	modelsAssimp[2] = new CModel_ASSIMP(CModel_ASSIMP::IMMEDIATE, "../Scene1/poste.obj");
 	modelsAssimp[3] = new CModel_ASSIMP(CModel_ASSIMP::IMMEDIATE, "../Scene1/entire_map.obj");
 	modelsAssimp[4] = new CModel_ASSIMP(CModel_ASSIMP::IMMEDIATE, "../Scene1/parede_esquerda_baixo.obj");
 	modelsAssimp[5] = new CModel_ASSIMP(CModel_ASSIMP::IMMEDIATE, "../Scene1/escuro.obj");
+	modelsAssimp[6] = new CModel_ASSIMP(CModel_ASSIMP::IMMEDIATE, "../Scene1/porta-meio.obj");
+	modelsAssimp[7] = new CModel_ASSIMP(CModel_ASSIMP::IMMEDIATE, "../Scene1/barris.obj");
+	modelsAssimp[8] = new CModel_ASSIMP(CModel_ASSIMP::IMMEDIATE, "../Scene1/box.obj");
+	modelsAssimp[9] = new CModel_ASSIMP(CModel_ASSIMP::IMMEDIATE, "../Scene1/chao_escuro.obj");
 
 
 	pModel3DS = NULL;
@@ -172,61 +176,17 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	glEnable(GL_TEXTURE_2D);
 
 	CreateSkyBox(0.0f, 100.0f, 0.0f, 1500.0f, 1500.0f, 1500.0f, pTextures);
-
 	
-
-
-	
-
-	glPushMatrix();
-	glTranslatef(0.0f, 0.0f, 0.0f);
-		modelsAssimp[1]->Draw();
-	glPopMatrix();
-
-	glTranslatef(0.0f, 0.0f, 0.0f);
-		modelsAssimp[2]->Draw();
-	glPopMatrix();
-
-	glTranslatef(0.0f, 0.0f, 0.0f);
-		modelsAssimp[3]->Draw();
-	glPopMatrix();
-
-	glTranslatef(0.0f, 0.0f, 0.0f);
-		modelsAssimp[4]->Draw();
-	glPopMatrix();
-
-	glTranslatef(0.0f, 0.0f, 0.0f);
-		modelsAssimp[5]->Draw();
-	glPopMatrix();
-
-
-
-	//glPushMatrix();
-	//glTranslatef(0.0f, 0.0f, 0.0f);
-	//	pModel3DS->Draw();
-	//glPopMatrix();
-
-
+	for (int i = 0; i < 100; i++) {
+		if (modelsAssimp[i] != NULL) {
+			glPushMatrix();
+			glTranslatef(0.0f, 0.0f, 0.0f);
+				modelsAssimp[i]->Draw();
+			glPopMatrix();
+		}
+	}
 
 	glDisable(GL_TEXTURE_2D);
-
-	
-
-
-
-
-
-
-
-	
-	
-
-
-
-	
-	
-
-	
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//                               DESENHA OS OBJETOS DA CENA (FIM)
