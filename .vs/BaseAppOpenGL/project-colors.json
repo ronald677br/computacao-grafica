@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "cf6ce879-b5c1-48ab-8b7e-d79dda6358b6": {
+      "ProjectGuid": "cf6ce879-b5c1-48ab-8b7e-d79dda6358b6",
+      "DisplayName": "BaseAppOpenGL",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

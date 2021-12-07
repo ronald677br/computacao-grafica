@@ -1,5 +1,5 @@
 ﻿  Scene1.cpp
-C:\Users\jmanf\OneDrive\Documents\BaseAppOpenGL\BaseAppOpenGL\Mesh.h(29): warning C4091: 'static ': ignored on left of 'Mesh::MeshEntry::BUFFERS' when no variable is declared
-C:\Users\jmanf\OneDrive\Documents\BaseAppOpenGL\BaseAppOpenGL\Scene1.cpp(108,22): warning C4156: deletion of an array expression without using the array form of 'delete'; array form substituted
-C:\Users\jmanf\OneDrive\Documents\BaseAppOpenGL\BaseAppOpenGL\Scene1.cpp(108,22): warning C4154: deletion of an array expression; conversion to pointer supplied
-  BaseAppOpenGL.vcxproj -> C:\Users\jmanf\OneDrive\Documents\BaseAppOpenGL\Debug\BaseAppOpenGL.exe
+C:\Users\Joni\Documents\Projects\computacao-grafica\BaseAppOpenGL\Mesh.h(29): warning C4091: 'static ': ignorado à esquerda de 'Mesh::MeshEntry::BUFFERS' quando nenhuma variável é declarada
+C:\Users\Joni\Documents\Projects\computacao-grafica\BaseAppOpenGL\Scene1.cpp(114,22): warning C4156: exclusão de uma expressão de matriz sem o uso da forma matricial de 'delete'; forma matricial substituída
+C:\Users\Joni\Documents\Projects\computacao-grafica\BaseAppOpenGL\Scene1.cpp(114,22): warning C4154: exclusão de uma expressão de matriz; conversão para ponteiro fornecida
+  BaseAppOpenGL.vcxproj -> C:\Users\Joni\Documents\Projects\computacao-grafica\Debug\BaseAppOpenGL.exe

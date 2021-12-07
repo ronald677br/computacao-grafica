@@ -80,7 +80,9 @@ private:
 	CTerreno* pTerreno;
 	CModel_3DS* pTerreno3DS;
 
-
+	float disp;
+	
+	float fLowLight[4];
 	
 
 };

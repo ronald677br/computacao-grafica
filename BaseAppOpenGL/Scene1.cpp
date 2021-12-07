@@ -7,7 +7,10 @@ CScene1::CScene1()
 	pTexto = NULL;
 	pTextures = NULL;
 
-
+	fLowLight[0] = 0.5;
+	fLowLight[1] = 0.5;
+	fLowLight[2] = 0.5;
+	fLowLight[3] = 1.0;
 	
 	bIsWireframe = false;
 	bIsCameraFPS = true;
@@ -39,8 +42,11 @@ CScene1::CScene1()
 	pTextures->CreateTextureMipMap(3, "../Scene1/up.bmp");
 	pTextures->CreateTextureMipMap(4, "../Scene1/left.bmp");
 	pTextures->CreateTextureMipMap(5, "../Scene1/right.bmp");
+	pTextures->CreateTextureMipMap(6, "../Scene1/parede.png");
+	pTextures->CreateTextureMipMap(7, "../Scene1/BEZAO.png");
 	glPopAttrib();
 	
+	disp = 0.0f;
 	fPosX = 0.0f;
 	fPosY = 0.0f;
 	fPosZ = 0.0f;
@@ -177,6 +183,12 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 
 	CreateSkyBox(0.0f, 100.0f, 0.0f, 1500.0f, 1500.0f, 1500.0f, pTextures);
 	
+	glEnable(GL_FOG);
+	glFogfv(GL_FOG_COLOR, fLowLight);
+	glFogf(GL_FOG_START, 0.0f);
+	glFogf(GL_FOG_END, 250.0f);
+	glFogi(GL_FOG_MODE, GL_LINEAR);
+	
 	for (int i = 0; i < 100; i++) {
 		if (modelsAssimp[i] != NULL) {
 			glPushMatrix();
@@ -187,6 +199,56 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 	}
 
 	glDisable(GL_TEXTURE_2D);
+
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+
+	glPushAttrib(GL_TEXTURE_BIT); // Salva o estado atual de texturização
+
+	// Configurar a unidade de textura 0
+	glActiveTexture(GL_TEXTURE0);
+	glEnable(GL_TEXTURE_2D);
+	pTextures->ApplyTexture(6);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvf(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_REPLACE);
+
+	// Configurar a unidade de textura 1
+	glActiveTexture(GL_TEXTURE1);
+	glEnable(GL_TEXTURE_2D);
+	pTextures->ApplyTexture(7);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_COMBINE);
+	glTexEnvf(GL_TEXTURE_ENV, GL_COMBINE_RGB, GL_MODULATE);
+
+
+	// Desenha o objeto com multi-textura
+	glPushMatrix();
+	glTranslatef(0.0f, 0.0f, 0.0f);
+	glBegin(GL_QUADS);
+
+	glMultiTexCoord2f(GL_TEXTURE0, 0.0f, 0.0f);
+	glMultiTexCoord2f(GL_TEXTURE1, 0.0f, 0.0f);
+	glVertex3f(-20.0f, 50.0f, 69.5f);
+
+	glMultiTexCoord2f(GL_TEXTURE0, 0.2f, 0.0f);
+	glMultiTexCoord2f(GL_TEXTURE1, 1.0f, 0.0f);
+	glVertex3f(0.0f, 50.0f, 69.5f);
+
+	glMultiTexCoord2f(GL_TEXTURE0, 0.2f, 0.2f);
+	glMultiTexCoord2f(GL_TEXTURE1, 1.0f, 1.0f);
+	glVertex3f(0.0f, 70.0f, 69.5f);
+
+	glMultiTexCoord2f(GL_TEXTURE0, 0.0f, 0.2f);
+	glMultiTexCoord2f(GL_TEXTURE1, 0.0f, 1.0f);
+	glVertex3f(-20.0f, 70.0f, 69.5f);
+	glEnd();
+	glPopMatrix();
+
+	// Desabilita multi-textura
+	glActiveTexture(GL_TEXTURE1);
+	glDisable(GL_TEXTURE_2D);
+	glActiveTexture(GL_TEXTURE0);
+	glDisable(GL_TEXTURE_2D);
+
+	glDisable(GL_FOG);
 
 	/////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//                               DESENHA OS OBJETOS DA CENA (FIM)
