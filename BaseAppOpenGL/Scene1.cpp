@@ -36,14 +36,21 @@ CScene1::CScene1()
 	glPushAttrib(GL_TEXTURE_BIT);
 	// Carrega todas as texturas
 	pTextures = new CTexture();	
-	pTextures->CreateTextureMipMap(0, "../Scene1/back.bmp");
-	pTextures->CreateTextureMipMap(1, "../Scene1/front.bmp");
-	pTextures->CreateTextureMipMap(2, "../Scene1/down.bmp");
-	pTextures->CreateTextureMipMap(3, "../Scene1/up.bmp");
-	pTextures->CreateTextureMipMap(4, "../Scene1/left.bmp");
-	pTextures->CreateTextureMipMap(5, "../Scene1/right.bmp");
+	pTextures->CreateTextureMipMap(0, "../Scene1/back.png");
+	pTextures->CreateTextureMipMap(1, "../Scene1/front.png");
+	pTextures->CreateTextureMipMap(2, "../Scene1/bottom.png");
+	pTextures->CreateTextureMipMap(3, "../Scene1/top.png");
+	pTextures->CreateTextureMipMap(4, "../Scene1/left.png");
+	pTextures->CreateTextureMipMap(5, "../Scene1/right.png");
 	pTextures->CreateTextureMipMap(6, "../Scene1/parede.png");
 	pTextures->CreateTextureMipMap(7, "../Scene1/BEZAO.png");
+	pTextures->CreateTextureTGA(8, "../Scene1/palmtree.tga");
+	pTextures->CreateTextureTGA(9, "../Scene1/desertgrass.tga");
+	pTextures->CreateTextureTGA(10, "../Scene1/Fundo1.jpg");
+	pTextures->CreateTextureTGA(11, "../Scene1/Fundo2.jpg");
+	pTextures->CreateTextureTGA(12, "../Scene1/Fundo3.jpg");
+	pTextures->CreateTextureTGA(13, "../Scene1/chao.png");
+
 	glPopAttrib();
 	
 	disp = 0.0f;
@@ -181,6 +188,14 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 
 	glEnable(GL_TEXTURE_2D);
 
+	// Habilita Blending
+	glEnable(GL_BLEND);
+	// Configura função de Blending
+	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+	// Seta cor do quadrado azul
+	glColor4f(1.0f, 1.0f, 1.0f, 0.6f);
+
 	CreateSkyBox(0.0f, 100.0f, 0.0f, 1500.0f, 1500.0f, 1500.0f, pTextures);
 	
 	glEnable(GL_FOG);
@@ -197,6 +212,267 @@ int CScene1::DrawGLScene(void)	// Função que desenha a cena
 			glPopMatrix();
 		}
 	}
+
+
+	// Palmeira 1
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.2);
+
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	pTextures->ApplyTexture(8);
+	glPushMatrix();
+	glTranslatef(0.0f, 0.0f, 10.0f);
+	glBegin(GL_QUADS);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(60.0f, 30.0f, -60.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(140.0f, 30.0f, -60.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(140.0f, 150.0f, -60.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(60.0f, 150.0f, -60.0f);
+
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(100.0f, 30.0f, -100.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(100.0f, 30.0f, -20.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(100.0f, 150.0f, -20.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(100.0f, 150.0f, -100.0f);
+	glEnd();
+	glPopMatrix();
+
+	glDisable(GL_ALPHA_TEST);
+	// Fim Palmeira 1
+
+	// Palmeira 2
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.2);
+
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	pTextures->ApplyTexture(8);
+	glPushMatrix();
+	glTranslatef(0.0f, 0.0f, 10.0f);
+	glBegin(GL_QUADS);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(-100.0f, 30.0f, -50.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(0.0f, 30.0f, -50.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(0.0f, 130.0f, -50.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(-100.0f, 130.0f, -50.0f);
+
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(-50.0f, 30.0f, -100.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(-50.0f, 30.0f, 0.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(-50.0f, 130.0f, 0.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(-50.0f, 130.0f, -100.0f);
+	glEnd();
+	glPopMatrix();
+
+	glDisable(GL_ALPHA_TEST);
+	//Fim Palmeira 2
+
+	//Palmeira 3
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.2);
+
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	pTextures->ApplyTexture(8);
+	glPushMatrix();
+	glTranslatef(0.0f, 0.0f, 10.0f);
+	glBegin(GL_QUADS);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(60.0f, 30.0f, 50.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(160.0f, 30.0f, 50.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(160.0f, 120.0f, 50.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(60.0f, 120.0f, 50.0f);
+
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(110.0f, 30.0f, 0.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(110.0f, 30.0f, 100.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(110.0f, 120.0f, 100.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(110.0f, 120.0f, 0.0f);
+	glEnd();
+	glPopMatrix();
+
+	glDisable(GL_ALPHA_TEST);
+	//Fim Palmeira 3
+
+	//Grama Seca 1
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.2);
+
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	pTextures->ApplyTexture(9);
+	glPushMatrix();
+	glTranslatef(0.0f, 0.0f, 10.0f);
+	glBegin(GL_QUADS);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(95.0f, 32.0f, 55.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(115.0f, 32.0f, 55.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(115.0f, 54.0f, 55.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(95.0f, 49.0f, 55.0f);
+
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(105.0f, 32.0f, 65.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(105.0f, 32.0f, 45.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(105.0f, 49.0f, 45.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(105.0f, 54.0f, 65.0f);
+	glEnd();
+	glPopMatrix();
+
+	glDisable(GL_ALPHA_TEST);
+	//Fim Grama Seca 1
+	
+	//Grama Seca 2
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.2);
+
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	pTextures->ApplyTexture(9);
+	glPushMatrix();
+	glTranslatef(0.0f, 0.0f, 10.0f);
+	glBegin(GL_QUADS);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(100.0f, 32.0f, -57.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(120.0f, 32.0f, -57.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(120.0f, 49.0f, -57.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(100.0f, 44.0f, -57.0f);
+
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(110.0f, 32.0f, -47.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(110.0f, 32.0f, -67.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(110.0f, 44.0f, -67.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(110.0f, 49.0f, -47.0f);
+	glEnd();
+	glPopMatrix();
+
+	glDisable(GL_ALPHA_TEST);
+	//Fim Grama Seca 2
+
+	//Grama Seca 3
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.2);
+
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	pTextures->ApplyTexture(9);
+	glPushMatrix();
+	glTranslatef(0.0f, 0.0f, 10.0f);
+	glBegin(GL_QUADS);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(90.0f, 32.0f, -70.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(110.0f, 32.0f, -70.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(110.0f, 49.0f, -70.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(90.0f, 44.0f, -70.0f);
+
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(100.0f, 32.0f, -60.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(100.0f, 32.0f, -80.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(100.0f, 44.0f, -80.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(100.0f, 49.0f, -60.0f);
+	glEnd();
+	glPopMatrix();
+
+	glDisable(GL_ALPHA_TEST);
+	//Fim Grama Seca 3
+
+	//Grama Seca 4
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.2);
+
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	pTextures->ApplyTexture(9);
+	glPushMatrix();
+	glTranslatef(0.0f, 0.0f, 10.0f);
+	glBegin(GL_QUADS);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(-53.0f, 32.0f, -57.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(-73.0f, 32.0f, -57.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(-73.0f, 53.0f, -57.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(-53.0f, 57.0f, -57.0f);
+
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(-63.0f, 32.0f, -47.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(-63.0f, 32.0f, -67.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(-63.0f, 57.0f, -67.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(-63.0f, 53.0f, -47.0f);
+	glEnd();
+	glPopMatrix();
+
+	glDisable(GL_ALPHA_TEST);
+	//Fim Grama Seca 4
+
+	//Grama Seca 5
+	glEnable(GL_ALPHA_TEST);
+	glAlphaFunc(GL_GREATER, 0.2);
+
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	pTextures->ApplyTexture(9);
+	glPushMatrix();
+	glTranslatef(0.0f, 0.0f, 10.0f);
+	glBegin(GL_QUADS);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(-23.0f, -6.0f, 50.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(-2.0f, -6.0f, 50.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(-3.0f, 20.0f, 50.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(-24.0f, 20.0f, 50.0f);
+
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(-15.0f, -6.0f, 62.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(-15.0f, -6.0f, 43.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(-15.0f, 20.0f, 38.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(-15.0f, 20.0f, 58.0f);
+	glEnd();
+	glPopMatrix();
+
+	glDisable(GL_ALPHA_TEST);
+	//Fim Grama Seca 5
+
+	// Desabilita Blending
+	glDisable(GL_BLEND);
+
+	//ParedePrincipal
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	pTextures->ApplyTexture(6);
+	glPushMatrix();
+	glBegin(GL_QUADS);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(117.0f, 75.5f, -80.5f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(117.0f, 75.5f, 79.5f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(117.0f, 0.5f, 79.5f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(117.0f, 0.5f, -80.5f);
+	glEnd();
+	glPopMatrix();
+	//FIM ParedePrincipal
+
+	//Fundo 1
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	pTextures->ApplyTexture(10);
+	glPushMatrix();
+	glBegin(GL_QUADS);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(-25.0f, 0.5f, 185.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(-68.0f, 0.5f, 185.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(-68.0f, 50.0f, 185.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(-25.0f, 50.0f, 185.0f);
+	glEnd();
+	glPopMatrix();
+	//FIM Fundo 1
+
+	//Fundo 2
+	//Areia
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	pTextures->ApplyTexture(13);
+	glPushMatrix();
+	glBegin(GL_QUADS);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(-72.0f, 0.0f, -13.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(-72.0f, 0.0f, 42.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(-84.0f, 0.0f, 42.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(-84.0f, 0.0f, -13.0f);
+	glEnd();
+	glPopMatrix();
+	//Fim Areia
+
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	pTextures->ApplyTexture(11);
+	glPushMatrix();
+	glBegin(GL_QUADS);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(-83.0f, 0.0f, -13.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(-83.0f, 0.0f, 42.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(-83.0f, 59.0f, 42.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(-83.0f, 59.0f, -13.0f);
+	glEnd();
+	glPopMatrix();
+	//FIM Fundo 2
+
+	//Fundo 3
+	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
+	pTextures->ApplyTexture(12);
+	glPushMatrix();
+	glBegin(GL_QUADS);
+	glTexCoord2d(0.0f, 0.0f); glVertex3f(-73.0f, 30.0f, -119.0f);
+	glTexCoord2d(1.0f, 0.0f); glVertex3f(-22.0f, 30.0f, -119.0f);
+	glTexCoord2d(1.0f, 1.0f); glVertex3f(-22.0f, 75.0f, -119.0f);
+	glTexCoord2d(0.0f, 1.0f); glVertex3f(-73.0f, 75.0f, -119.0f);
+	glEnd();
+	glPopMatrix();
+	//FIM Fundo 3
 
 	glDisable(GL_TEXTURE_2D);
 

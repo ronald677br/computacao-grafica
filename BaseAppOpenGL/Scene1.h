@@ -84,6 +84,5 @@ private:
 	
 	float fLowLight[4];
 	
-
 };
 
